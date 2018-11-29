@@ -23,6 +23,7 @@ public class DataBase {
                 this.conn = (DriverManager.getConnection(url+dbName, userName, password));
                 statement = conn.createStatement();
                 System.out.println("SUCCESS");
+                System.out.println("SUCCESS");
             }
             catch (ClassNotFoundException | SQLException sql){
                 System.out.println("FAILED");

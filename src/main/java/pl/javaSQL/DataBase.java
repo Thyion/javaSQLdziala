@@ -24,6 +24,7 @@ public class DataBase {
                 statement = conn.createStatement();
                 System.out.println("SUCCESS");
                 System.out.println("SUCCESS");
+                System.out.println("SUCCESS");
             }
             catch (ClassNotFoundException | SQLException sql){
                 System.out.println("FAILED");

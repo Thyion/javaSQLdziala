@@ -1,4 +1,4 @@
-package pl.java;
+package pl.javaSQL;
 
 import java.sql.*;
 import java.util.LinkedList;

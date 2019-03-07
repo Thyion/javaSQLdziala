@@ -16,15 +16,13 @@ public class DataBase {
             String dbName = "java";
             String driver = "com.mysql.jdbc.Driver";
             String userName = "root";
-            String password = "";
+            String password = "1";
 
             try{
                 Class.forName(driver);
                 this.conn = (DriverManager.getConnection(url+dbName, userName, password));
                 statement = conn.createStatement();
-                System.out.println("SUCCESS");
-                System.out.println("SUCCESS");
-                System.out.println("SUCCESS");
+                System.out.println("OPEN CONNECTION SUCCESS");
             }
             catch (ClassNotFoundException | SQLException sql){
                 System.out.println("FAILED");
@@ -75,12 +73,12 @@ public class DataBase {
         return true;
     }
 
-    public boolean insertKsiazka(String tytul, String autor) {
+    public boolean insertKsiazka(String tytul, String autor, int rok) {
         try {
-            PreparedStatement prepStmt = conn.prepareStatement(
-                    "insert into ksiazki values (NULL, ?, ?);");
+            PreparedStatement prepStmt = conn.prepareStatement("insert into ksiazki values (NULL, ?, ?, ?)");
             prepStmt.setString(1, tytul);
             prepStmt.setString(2, autor);
+            prepStmt.setInt(3, rok);
             prepStmt.execute();
         } catch (SQLException e) {
             System.err.println("Blad przy wypozyczaniu");
@@ -127,13 +125,14 @@ public class DataBase {
         List<Ksiazka> ksiazki = new LinkedList<Ksiazka>();
         try {
             ResultSet result = statement.executeQuery("SELECT * FROM ksiazki");
-            int id;
+            int id, rok;
             String tytul, autor;
             while(result.next()) {
-                id = result.getInt("id_ksiazki");
-                tytul = result.getString("tytul");
-                autor = result.getString("autor");
-                ksiazki.add(new Ksiazka(id, tytul, autor));
+                id = result.getInt("Id");
+                tytul = result.getString("Tytuł");
+                autor = result.getString("Autor");
+                rok = result.getInt("Rok");
+                ksiazki.add(new Ksiazka(id, tytul, autor, rok));
             }
         } catch (SQLException e) {
             e.printStackTrace();

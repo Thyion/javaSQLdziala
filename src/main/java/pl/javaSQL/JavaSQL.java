@@ -13,9 +13,9 @@ public class JavaSQL {
         database.insertCzytelnik("Piotr", "Wojtecki", "89273849128");
         database.insertCzytelnik("Abdul", "Dabdul");
 
-        database.insertKsiazka("Cień Wiatru", "Carlos Ruiz Zafon");
-        database.insertKsiazka("W pustyni i w puszczy", "Henryk Sienkiewicz");
-        database.insertKsiazka("Harry Potter", "Joanne Kathleen Rowling.");
+        database.insertKsiazka("Cień Wiatru", "Carlos Ruiz Zafon", 1990);
+        database.insertKsiazka("W pustyni i w puszczy", "Henryk Sienkiewicz", 1885);
+        database.insertKsiazka("Harry Potter", "Joanne Kathleen Rowling.", 2005);
 
         List<Czytelnik> czytelnicy = database.selectCzytelnicy();
         List<Ksiazka> ksiazki = database.selectKsiazki();
@@ -23,12 +23,12 @@ public class JavaSQL {
         System.out.println("Lista czytelników: ");
         for(Czytelnik c: czytelnicy)
             System.out.println(c);
+//
+//        System.out.println("Lista książek:");
+//        for(Ksiazka k: ksiazki)
+//            System.out.println(k);
 
-        System.out.println("Lista książek:");
-        for(Ksiazka k: ksiazki)
-            System.out.println(k);
-
-//            database.closeConnection();
+            database.closeConnection();
     }
 
 }
